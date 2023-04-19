@@ -1,0 +1,11 @@
+{
+  "name": "pwd-msg-email",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Elydev26/Task-dev-2.git",
+  "author": "ElyDev <hadewunmi026@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
