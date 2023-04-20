@@ -15,6 +15,8 @@ export const loginHandler = async (req: Request, res: Response, next: NextFuncti
     }
 }
 
+export default loginHandler
+
 // const loginHandler = (userloginSchema: joi.Schema) => (req: Request, res: Response, next: NextFunction) => {
 
 //     const { error } = userloginSchema.validate(req)
@@ -28,4 +30,3 @@ export const loginHandler = async (req: Request, res: Response, next: NextFuncti
 //     next ()
 // }
 
-export default loginHandler
