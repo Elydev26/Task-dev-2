@@ -1,6 +1,6 @@
 import mongoose, { Schema, model, Document } from "mongoose";
 
-export interface UsersDocument extends Document {
+export interface IUsers extends Document {
     email: string 
     password: string 
     resetPasswordToken?: string
@@ -26,4 +26,4 @@ const usersSchema: Schema = new Schema ({
     
 })
 
-export const Users = model<UsersDocument>('Users', usersSchema )
+export const userPassword = mongoose.model<IUsers>('userPassword', usersSchema )

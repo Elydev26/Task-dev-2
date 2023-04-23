@@ -1,19 +1,19 @@
 import mongoose, {Schema, Document} from 'mongoose'
-import User from './user.model'
+
 
 export interface IMessage extends Document {
-    from : string
-    to : string
+    fromEmail : string
+    toEmail : string
     content: string
 }
 
  const messageSchema: Schema = new mongoose.Schema({
-    from: {
+    fromEmail: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
     },
-    to: {
+    toEmail: {
         type: mongoose.Schema.Types.ObjectId,
         requied: true,
         ref: 'User'

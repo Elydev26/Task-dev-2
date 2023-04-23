@@ -1,8 +1,10 @@
 import express, {Request, Response} from 'express'
 import Message from '../models/message.model'
 import User from '../models/user.model'
+import { messageUser } from '../validators/v1/message.validator'
 
 export async function message(req: Request, res: Response) {
+    const errors = messageUser(req.body)
     try{
         const { fromEmail, toEmail} = req.query
 

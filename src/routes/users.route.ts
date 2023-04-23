@@ -5,12 +5,11 @@ import loginHandler from '../middlewares/login.middleware'
 import { validateSender } from '../middlewares/message.middleware'
 import { message } from '../comtrollers/message.controller'
 import { resetPasswordHandler } from '../middlewares/resetPassword.middleware'
-import { sendResetPasswordEmail, resetPassword } from '../comtrollers/resetPawword'
-
+import { sendResetPasswordEmail, resetPassword } from '../comtrollers/resetPawword.controller'
 
 const router = Router()
 // New and Existing check user route
-router.post("/register", registerHandler, register)
+router.post("/register", registerHandler,register)
 router.post("/login", loginHandler, userLogin)
 
 // Message sender route
