@@ -5,6 +5,7 @@ import { createUser, currentUser } from '../validators/v1/users.validator'
 import userModel from '../models/user.model';
 import dotenv from 'dotenv'
 import { APP_SECRET } from '../config/config';
+import { sendWelcomeEmail } from '../util/email';
 dotenv.config()
 
 
@@ -22,7 +23,9 @@ export async function register(req: Request, res: Response) {
         password: bcrypt.hashSync(password, 1),
 
     })
-
+    const user = await createUser(req.body)
+    if (user) {
+        sendWelcomeEmail(user.email, user.userName)
     // Generate a JWT token for the new user
     const token =
         jwt.sign({ _id: newUser._id },
@@ -30,7 +33,9 @@ export async function register(req: Request, res: Response) {
             expiresIn: "1h",
             algorithm: "HS256"
         });
-    res.status(201).json({ message: "User registered", token, UserActivation: "Account activation token sent proceed to activate your account" })
+       
+        }
+    res.status(201).json({ message: "User registered successfully", email, UserActivation: "Account activation token sent proceed to activate your account" })
 }
 
 
@@ -60,10 +65,10 @@ export async function userLogin(req: Request, res: Response) {
                 },
                     APP_SECRET as string)
             return res.status(200).json({
-                // token,
+                 token,
                 message: "Login successfully",
                 status: true,
-                // role: existingUser
+                 role: existingUser
             });
         } else {
             return res.status(400).json({

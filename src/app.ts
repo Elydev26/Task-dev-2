@@ -1,6 +1,6 @@
 import express from 'express'
 import router from './routes/users.route'
-import connect from '../db'
+import connect from './util/db'
 import { PORT } from './config/config'
 
 const app = express()
