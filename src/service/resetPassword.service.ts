@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import { sendResetPasswordEmail } from '../util/email'
-import resetPasswordModel from '../models/resePassword.model'
+import resetPasswordModel from '../models/resetPassword.model'
 import User, {IUser} from '../models/user.model'
 import { generateToken } from '../util/generateResetCode.util'
 
@@ -36,8 +36,8 @@ export async function sendToken( email: string) {
 
 
 export async function resetPassword(
-    { otpCode, password }:
-        { otpCode: number, password: string },
+    { token, password }:
+        { token: number, password: string },
     ID: string
 ) {
 
@@ -47,11 +47,11 @@ export async function resetPassword(
 
     if (!user) throw new Error("not found")
 
-    const resetPassword = await resetPasswordModel.findOne({ otpCode: otpCode, user: user._id })
+    const resetPassword = await resetPasswordModel.findOne({ token: token, user: user._id })
 
-    if (!resetPassword) throw new Error("Invalid otp code")
+    if (!resetPassword) throw new Error("Invalid token code")
 
-    if (resetPassword.expiredDate < new Date()) throw new Error("otp code expired")
+    if (resetPassword.expiredDate < new Date()) throw new Error("token expired")
 
     user.password = password;
 

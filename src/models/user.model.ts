@@ -1,15 +1,13 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
-import { saltFactor } from '../config/config';
 dotenv.config()
 
 export interface IUser extends mongoose.Document {
     userName: string,
     password: string,
     email: string,
-    comparePassword(password: string): Promise<Boolean>
-}
+  }
 
 const userSchema = new mongoose.Schema<IUser>({
     userName: {
@@ -19,7 +17,6 @@ const userSchema = new mongoose.Schema<IUser>({
     email: {
         type: String,
         required: true,
-        unique: true
     },
     password: {
         type: String,
@@ -39,12 +36,6 @@ userSchema.pre<IUser>('save', async function (next) {
     this.password = hashedPassword
     next()
 })
-
-userSchema.methods.comparePassword = async function (inputPassword: string): Promise<Boolean> {
-    console.log(this.password)
-    const isValid = await bcrypt.compare(inputPassword, this.password)
-    return isValid
-}
 
 
 const User = mongoose.model('Users', userSchema)

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { ValidationResult } from 'joi'
-import { resetpasswordSchema } from '../schema/resetPassword.schema'
+import { resetpasswordSchema } from '../validator/resetPassword.validator'
 
 
 export const resetPasswordHandler = async ( req: Request, res: Response, next: NextFunction) => {

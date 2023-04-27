@@ -1,5 +1,5 @@
-import { number } from "joi";
-import mongoose, { Schema, model, Document } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
+ 
 
 export interface IResetPassword extends Document {
     user: mongoose.Types.ObjectId
@@ -7,7 +7,7 @@ export interface IResetPassword extends Document {
     resetPasswordExpires: Date
 }
 
-const usersSchema: Schema = new mongoose.Schema<IResetPassword> ({
+const resetpasswordSchema: Schema = new mongoose.Schema<IResetPassword> ({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
@@ -17,6 +17,6 @@ const usersSchema: Schema = new mongoose.Schema<IResetPassword> ({
     
 })
 
-export const resetPasswordModel = mongoose.model('resetPassword', usersSchema )
+export const resetPasswordModel = mongoose.model('resetPassword', resetpasswordSchema )
 
 export default resetPasswordModel

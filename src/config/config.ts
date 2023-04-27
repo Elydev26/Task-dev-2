@@ -12,6 +12,7 @@ export const saltFactor = process.env.saltFactor
 export const SERVICE = process.env.SERVICE
 export const PASS = process.env.PASS
 export const USER_EMAIL = process.env.USER_EMAIL
+export const JWT_SECRET = process.env.JWT_SECRET
 
 
 

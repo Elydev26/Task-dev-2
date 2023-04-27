@@ -4,9 +4,9 @@ import { USER_EMAIL, SERVICE, PASS } from '../config/config';
 dotenv.config()
 
 const transPort = nodemailer.createTransport({
-    service: SERVICE,
+    service: SERVICE ,
     auth: {
-        user: USER_EMAIL,
+        user: USER_EMAIL ,
         pass: PASS
     }
 })
@@ -14,10 +14,10 @@ const transPort = nodemailer.createTransport({
 
 export async function sendResetPasswordEmail(code: number, recievereMail: string, name: string) {
     const mailOptions = {
-        from: process.env.USER_EMAIL,
+        from:USER_EMAIL,
         to: recievereMail,
         subject: 'Password Reset Request',
-        text: `Dear ${name}, your seven digit reset otp code is ${code}. code expires in 1 hour, do not disclose code to anyone`,
+        text: `Dear ${name}, your seven digit reset Token  is ${code}. code expires in 1 hour, do not disclose code to anyone`,
     };
     try {
         transPort.sendMail(mailOptions)
@@ -30,7 +30,7 @@ export async function sendResetPasswordEmail(code: number, recievereMail: string
 }
 export async function sendWelcomeEmail(recievereMail: string, name: string) {
     const mailOptions = {
-        from: process.env.USER_EMAIL,
+        from: USER_EMAIL,
         to: recievereMail,
         subject: 'Welcome to our platform!',
         text: `Hello ${name}, nice having you here! `,
@@ -43,5 +43,6 @@ export async function sendWelcomeEmail(recievereMail: string, name: string) {
 
     }
 }
+
 
 

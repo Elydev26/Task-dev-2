@@ -1,5 +1,5 @@
 import joi from 'joi'
-import mongoose, { Schema } from 'mongoose'
+
 
 export const userRegisterSchema: joi.Schema = joi.object({
     userName: joi.string().required(),
@@ -17,8 +17,5 @@ export const userloginSchema: joi.Schema = joi.object({
     password: joi.string().min(6).required()
 
 })
-
-
-
 
 export default userRegisterSchema
